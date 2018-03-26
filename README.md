@@ -13,7 +13,7 @@ Here are some helpful links for using this:
 
  * [How to Create a Vagrant Base Box from an Existing One](https://scotch.io/tutorials/how-to-create-a-vagrant-base-box-from-an-existing-one)
 
-##But, also, Guest Additions!
+## But, also, Guest Additions!
 This base box will endeavor to keep up with Guest Additions so you don't have to.
 
 Yes, the Virtual Box Guest Additions version number increases with each new version
@@ -21,5 +21,5 @@ of Virtual Box. And, alas, most generic Vagrant base box images don't ever
 seem able to keep up. Darn them. One easy, though somewhat time-consuming, way to
 deal with this is to install the [VB Guest plugin](https://github.com/dotless-de/vagrant-vbguest).
 
-##License
+## License
 [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause).

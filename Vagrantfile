@@ -56,13 +56,14 @@ Vagrant.configure("2") do |config|
    # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
   #
+
+   vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+
  # Customize the amount of memory on the VM:
    vb.memory = "1024"
 
- # disable Ubuntu's console log, it's helpful... but... it hard codes paths
-    vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
-
  end
+
   #
   # View the documentation for the provider you are using for more
   # information on available options.

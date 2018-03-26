@@ -15,7 +15,6 @@
   vars:
     project_name: 'nurax'
     keys_to_add:
-      - https://github.com/hardyoyo.keys
     db_user: 'hyrax'
     db_pass: 'hyrax'
   roles:

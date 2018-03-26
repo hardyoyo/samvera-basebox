@@ -58,6 +58,10 @@ Vagrant.configure("2") do |config|
   #
  # Customize the amount of memory on the VM:
    vb.memory = "1024"
+
+ # disable Ubuntu's console log, it's helpful... but... it hard codes paths
+    vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+
  end
   #
   # View the documentation for the provider you are using for more
@@ -69,7 +73,20 @@ Vagrant.configure("2") do |config|
   # config.vm.provision "shell", inline: <<-SHELL
   #   apt-get update
   #   apt-get install -y apache2
- 
+
+ # Shell script to set apt sources.list to something appropriate (close to you, and actually up)
+    # via apt-spy2 (https://github.com/lagged/apt-spy2)
+
+    # If a customized version of this script exists in the config folder, use that instead
+
+    if File.exists?("config/apt-spy-2-bootstrap.sh")
+        config.vm.provision :shell, :name => "apt-spy-2, locating a nearby mirror", :inline => "echo '   > > > running local apt-spy2 to locate a nearby mirror (for quicker installs). Do not worry if it shows an error, it will be OK, there is a fallback.'"
+        config.vm.provision :shell, :name => "apt-spy-2, running custom apt-spy-2-bootstrap", :path => "config/apt-spy-2-bootstrap.sh"
+    else
+        config.vm.provision :shell, :name => "apt-spy2, locating a nearby mirror", :inline => "echo '   > > > running default apt-spy2 to locate a nearby mirror (for quicker installs). Do not worry if it shows an error, it will be OK, there is a fallback.'"
+        config.vm.provision :shell, :name => "apt-spy2, running default apt-spy-2-bootstrap", :path => "apt-spy-2-bootstrap.sh"
+    end
+
   # run ansible bootstrap
     config.vm.provision :shell, :name => "running ansible-bootstrap", :path => "ansible-boostrap-ubuntu.sh"
 
